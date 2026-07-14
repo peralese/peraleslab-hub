@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{ $sections := slice "build-logs" "iac" "home-lab" "migration" }}
+{{ $sections := slice "build-logs" "migration" "architecture" "lab-notes" "tools" "ai" }}
 {{ $allPosts := where site.RegularPages "Type" "in" $sections }}
 
 {{ $featuredMatches := where $allPosts "Params.featured" true }}

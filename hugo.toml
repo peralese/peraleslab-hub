@@ -28,26 +28,36 @@ copyright = "peraleslab.com"
     name = "GitHub Actions"
 
 [[menu.main]]
-  name = "Build logs"
+  name = "Build Logs"
   url = "/build-logs/"
   weight = 10
 
 [[menu.main]]
-  name = "IaC"
-  url = "/iac/"
+  name = "Migration"
+  url = "/migration/"
   weight = 20
 
 [[menu.main]]
-  name = "Home lab"
-  url = "/home-lab/"
+  name = "Architecture"
+  url = "/architecture/"
   weight = 30
 
 [[menu.main]]
-  name = "Migration"
-  url = "/migration/"
+  name = "Lab Notes"
+  url = "/lab-notes/"
   weight = 40
+
+[[menu.main]]
+  name = "Tools"
+  url = "/tools/"
+  weight = 50
+
+[[menu.main]]
+  name = "AI"
+  url = "/ai/"
+  weight = 60
 
 [[menu.main]]
   name = "About"
   url = "/about/"
-  weight = 50
+  weight = 70

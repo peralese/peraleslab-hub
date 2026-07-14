@@ -27,10 +27,12 @@ hugo server -D
 
 Content lives under `content/<section>/`, one section per nav item:
 
-- `build-logs/`
-- `iac/`
-- `home-lab/`
+- `build-logs/` — includes IaC/Terraform content; not a separate section
 - `migration/`
+- `architecture/`
+- `lab-notes/`
+- `tools/`
+- `ai/`
 - `about.md` (standalone page, not a section)
 
 Front matter fields used by the templates:

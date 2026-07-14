@@ -331,6 +331,16 @@ a {
   margin-bottom: 32px;
 }
 
+.section-list__body {
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin-bottom: 32px;
+
+  a {
+    color: var(--accent-hover);
+  }
+}
+
 .article-rows {
   border-top: 1px solid var(--border-soft);
 }
