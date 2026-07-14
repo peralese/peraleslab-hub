@@ -1,0 +1,40 @@
+{{ $items := .Site.Menus.main }}
+{{ $col1 := first 3 $items }}
+{{ $col2 := after 3 $items }}
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="footer-col footer-col--brand">
+      <a class="brand" href="{{ "/" | relLangURL }}">
+        <span class="brand__prompt">&gt;_</span> peraleslab.com
+      </a>
+      <p class="footer-tagline">{{ .Site.Params.tagline }}</p>
+    </div>
+
+    <div class="footer-col">
+      {{ range $col1 }}
+      <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+      {{ end }}
+    </div>
+
+    <div class="footer-col">
+      {{ range $col2 }}
+      <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+      {{ end }}
+      <a href="{{ "index.xml" | relURL }}">Subscribe</a>
+    </div>
+
+    <div class="footer-col">
+      <a href="{{ .Site.Params.pensieveURL }}">Personal writing &rarr;</a>
+      <a href="{{ .Site.Params.pensieveURL }}">My Digital Pensieve &rarr;</a>
+    </div>
+
+    <div class="footer-col footer-col--whoami">
+      <div class="terminal-block">
+        <span class="terminal-block__prompt">$</span> whoami &mdash; engineer &middot; problem solver &middot; builder
+      </div>
+    </div>
+  </div>
+  <div class="wrap site-footer__bottom">
+    &copy; {{ now.Format "2006" }} peraleslab.com &mdash; All rights reserved.
+  </div>
+</footer>

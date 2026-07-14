@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="wrap article">
+  {{ with .Params.tag }}<span class="tag">{{ . }}</span>{{ end }}
+  <h1 class="article__title">{{ .Title }}</h1>
+  <div class="article__meta">
+    {{ if not .Date.IsZero }}<span>{{ .Date.Format "Jan 2, 2006" }}</span>{{ end }}
+    <span>{{ .ReadingTime }} min read</span>
+  </div>
+  <div class="article__body">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

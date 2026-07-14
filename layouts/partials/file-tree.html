@@ -1,0 +1,17 @@
+<div class="file-tree">
+  {{ $lines := slice
+    "peraleslab-infra/"
+    "├── main.tf"
+    "├── modules/"
+    "│   ├── s3-website/"
+    "│   ├── cloudfront/"
+    "│   ├── acm/"
+    "│   └── iam-oidc/"
+    "├── environments/"
+    "│   └── prod/"
+    "└── README.md"
+    ""
+  }}
+  <pre><code>{{ range $i, $line := $lines }}<span class="file-tree__line"><span class="file-tree__num">{{ add $i 1 }}</span><span class="file-tree__text">{{ $line }}</span></span>
+{{ end }}</code></pre>
+</div>

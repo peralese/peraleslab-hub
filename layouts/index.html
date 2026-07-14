@@ -1,0 +1,77 @@
+{{ define "main" }}
+
+{{ $sections := slice "build-logs" "iac" "home-lab" "migration" }}
+{{ $allPosts := where site.RegularPages "Type" "in" $sections }}
+
+{{ $featuredMatches := where $allPosts "Params.featured" true }}
+{{ $featured := "" }}
+{{ if gt (len $featuredMatches) 0 }}
+  {{ $featured = index ($featuredMatches.ByDate.Reverse) 0 }}
+{{ else }}
+  {{ $buildLogs := where $allPosts "Type" "build-logs" }}
+  {{ $featured = index ($buildLogs.ByDate.Reverse) 0 }}
+{{ end }}
+
+{{ $latest := where $allPosts "RelPermalink" "!=" $featured.RelPermalink }}
+{{ $latest = first 4 $latest.ByDate.Reverse }}
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div class="hero__text">
+      <h1 class="hero__title">The technical hub of<br>my online presence.<span class="hero__cursor">_</span></h1>
+      <p class="hero__subhead">{{ .Site.Params.heroSubhead }}</p>
+      <a class="hero__cta" href="{{ $featured.RelPermalink }}">Read the latest build log &rarr;</a>
+    </div>
+    <div class="hero__diagram">
+      {{ partial "hero-diagram.html" . }}
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="featured-card">
+    <div class="featured-card__main">
+      <span class="eyebrow">Featured build log</span>
+      <h2 class="featured-card__title">{{ $featured.Title }}</h2>
+      <p class="featured-card__desc">{{ $featured.Description }}</p>
+      <div class="featured-card__meta">
+        <span class="meta-item">{{ $featured.Date.Format "Jan 2, 2006" }}</span>
+        <span class="meta-item">{{ $featured.ReadingTime }} min read</span>
+        {{ with $featured.Params.tag }}<span class="tag">{{ . }}</span>{{ end }}
+      </div>
+      <a class="btn btn--primary" href="{{ $featured.RelPermalink }}">Read the build log &rarr;</a>
+    </div>
+    <div class="featured-card__tree">
+      {{ partial "file-tree.html" . }}
+    </div>
+  </div>
+</section>
+
+<section class="wrap latest-articles">
+  <span class="eyebrow">Latest articles</span>
+  <div class="article-rows">
+    {{ range $latest }}
+    <a class="article-row" href="{{ .RelPermalink }}">
+      <div class="article-row__main">
+        <h3 class="article-row__title">{{ .Title }}</h3>
+        <p class="article-row__desc">{{ .Description }}</p>
+      </div>
+      <div class="article-row__meta">
+        <span class="article-row__date">{{ .Date.Format "Jan 2" }}</span>
+        {{ with .Params.tag }}<span class="tag">{{ . }}</span>{{ end }}
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+<section class="wrap built-with">
+  <span class="built-with__label">Built with</span>
+  <div class="built-with__pills">
+    {{ range .Site.Params.builtWith }}
+    <span class="pill">{{ .name }}</span>
+    {{ end }}
+  </div>
+</section>
+
+{{ end }}

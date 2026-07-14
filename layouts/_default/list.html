@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="wrap section-list">
+  <h1 class="section-list__title">{{ .Title }}</h1>
+  {{ with .Description }}<p class="section-list__desc">{{ . }}</p>{{ end }}
+
+  <div class="article-rows">
+    {{ range .Pages.ByDate.Reverse }}
+    <a class="article-row" href="{{ .RelPermalink }}">
+      <div class="article-row__main">
+        <h2 class="article-row__title">{{ .Title }}</h2>
+        <p class="article-row__desc">{{ .Description }}</p>
+      </div>
+      <div class="article-row__meta">
+        {{ if not .Date.IsZero }}<span class="article-row__date">{{ .Date.Format "Jan 2" }}</span>{{ end }}
+        {{ with .Params.tag }}<span class="tag">{{ . }}</span>{{ end }}
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

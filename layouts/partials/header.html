@@ -1,0 +1,13 @@
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="{{ "/" | relLangURL }}">
+      <span class="brand__prompt">&gt;_</span> peraleslab.com
+    </a>
+    <nav class="site-nav">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL | relLangURL }}" class="site-nav__link{{ if $.IsMenuCurrent "main" . }} is-active{{ end }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+    <a class="btn btn--primary" href="{{ "index.xml" | relURL }}">Subscribe</a>
+  </div>
+</header>

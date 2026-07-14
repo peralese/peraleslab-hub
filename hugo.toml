@@ -1,0 +1,53 @@
+baseURL = "https://peraleslab.com/"
+locale = "en-us"
+title = "peraleslab.com"
+paginate = 10
+enableRobotsTXT = true
+copyright = "peraleslab.com"
+
+[taxonomies]
+
+[params]
+  tagline = "Notes from the field on cloud architecture, migration, and infrastructure as code."
+  heroSubhead = "Long-form writing on cloud architecture, migration, Terraform, and home lab engineering. Full articles live here first."
+  description = "The technical hub of my online presence."
+  pensieveURL = "https://pensieve.peraleslab.com"
+  diagramCaption = "Every push to main → live in production. No stored credentials, no inbound ports."
+
+  [[params.builtWith]]
+    name = "Hugo"
+  [[params.builtWith]]
+    name = "Terraform"
+  [[params.builtWith]]
+    name = "AWS"
+  [[params.builtWith]]
+    name = "CloudFront"
+  [[params.builtWith]]
+    name = "Cloudflare"
+  [[params.builtWith]]
+    name = "GitHub Actions"
+
+[[menu.main]]
+  name = "Build logs"
+  url = "/build-logs/"
+  weight = 10
+
+[[menu.main]]
+  name = "IaC"
+  url = "/iac/"
+  weight = 20
+
+[[menu.main]]
+  name = "Home lab"
+  url = "/home-lab/"
+  weight = 30
+
+[[menu.main]]
+  name = "Migration"
+  url = "/migration/"
+  weight = 40
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 50
