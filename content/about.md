@@ -1,7 +1,7 @@
 ---
 title: "About"
 description: "Cloud architect based in Texas with 20+ years in enterprise IT — background, professional focus, and what's being built at peraleslab.com."
-date: 2025-05-01
+date: 2026-07-15
 draft: false
 ---
 
