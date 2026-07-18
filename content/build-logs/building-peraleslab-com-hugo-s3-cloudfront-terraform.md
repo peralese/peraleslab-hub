@@ -1,7 +1,7 @@
 ---
 title: "Building peraleslab.com: Hugo + S3 + CloudFront + Terraform"
 description: "This site is a working example of its subject matter. A Hugo static site hosted on S3 and delivered by CloudFront. TLS via ACM with Cloudflare DNS. Deployed on every push with GitHub Actions using OIDC — no stored credentials. The entire stack is fully defined in Terraform."
-date: 2026-07-15
+date: 2026-07-17
 tag: "Build Log"
 featured: true
 draft: false
