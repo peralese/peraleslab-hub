@@ -10,6 +10,8 @@ This home lab provides a compact platform for hosting media services, internal a
 
 The environment supports practical experimentation with infrastructure, application modernization, Linux hosting, DNS, secure access, and self-hosted application deployment. It also provides a controlled platform for developing, testing, and operating personal software projects.
 
+![Hybrid home lab and self-hosted application environment architecture diagram](homelab-architecture.png)
+
 ## Network and Connectivity
 
 The environment begins with an AT&T internet gateway connected to a TP-Link Deco XE75 Pro mesh system, which provides routing and wireless connectivity throughout the home.
