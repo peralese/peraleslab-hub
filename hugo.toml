@@ -7,6 +7,11 @@ copyright = "peraleslab.com"
 
 [taxonomies]
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
   tagline = "Notes from the field on cloud architecture, migration, and infrastructure as code."
   heroSubhead = "Long-form writing on cloud architecture, migration, Terraform, and home lab engineering. Full articles live here first."
