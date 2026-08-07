@@ -12,8 +12,6 @@ Blogger provided an easy way to get started, but over time its limitations becam
 
 The result was the Digital Pensieve, a new version of my personal blog hosted at [pensieve.peraleslab.com](https://pensieve.peraleslab.com).
 
-<img src="pensieve-homepage.png" alt="Digital Pensieve homepage, showing featured post and latest posts" class="screenshot">
-
 The new site preserves the original purpose of the Blogger site while expanding its scope.
 
 It still includes content about:
@@ -23,6 +21,8 @@ It still includes content about:
 * Gardening
 
 The site also provides space for additional interests, including travel and other personal topics.
+
+<img src="pensieve-homepage.png" alt="Digital Pensieve homepage, showing featured post and latest posts" class="screenshot">
 
 ## Framework
 
