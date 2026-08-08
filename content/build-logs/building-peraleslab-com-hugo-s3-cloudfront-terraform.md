@@ -7,126 +7,44 @@ featured: true
 draft: false
 ---
 
-## Why build this myself?
+I created peraleslab.com as both a technical writing site and a working environment where I could build, test, and document the technologies I use. It is the second site I have built using this same overall blueprint. The Digital Pensieve established the pattern, and this site reuses it with its own configuration, content, and infrastructure.
 
-A conversation I've encountered repeatedly throughout my career goes
-something like this: someone asks how a system is deployed, how a
-particular part of the environment works, or why something was designed a
-certain way — and the honest answer is, "Let me check the documentation. I
-didn't build that part."
+One of my goals was to own the environment end to end: the site design, application code, infrastructure, and deployment process. It gives me a place to experiment with architecture and automation while documenting what I learn along the way.
 
-That is normal in enterprise IT. No one person owns every layer of a large
-system.
+## The Site
 
-But for peraleslab.com, I wanted something different.
+The site is built with Hugo, with the version pinned in a `.hugo-version` file used by both my local environment and the CI workflow. This keeps the local and production builds on the same version and avoids unnecessary differences between environments.
 
-I wanted at least one environment that I understood and owned end to end:
-the design, the code, the infrastructure, and the deployment process. If
-I'm going to write about migrations, architecture, and the tradeoffs that
-come with technical decisions, it seems only natural to have a place where
-I can build, test, and explore those ideas for myself.
+Hugo provides the content management, templates, reusable partials, SCSS processing, and static-site generation needed for the site without requiring an additional front-end framework.
 
-So that is what peraleslab.com is intended to be: not just a place where I
-write about technology, but a working environment where I can build, test,
-change, occasionally break, and document things along the way.
+## Deployment
 
-## The site
+A push to the main branch triggers GitHub Actions. The workflow builds the Hugo site, uploads the generated static files to Amazon S3, and invalidates the CloudFront distribution.
 
-I wanted something open source, relatively simple to operate, and capable
-of handling much of the site-building functionality without requiring me to
-assemble a collection of additional frameworks and tools. That led me to
-[Hugo](https://gohugo.io/).
-
-The site is built with Hugo, using the Extended edition, with the version
-pinned in a single `.hugo-version` file that both my local environment and
-the CI workflow use.
-
-The goal is simple: the version I build locally should be the same version
-that builds the production site. That removes one more source of
-unnecessary drift between development and deployment.
-
-One of the things I have come to appreciate about Hugo is how much
-functionality is already built into the framework. Content management,
-templates, reusable partials, SCSS processing, and static-site generation
-all live within the same toolchain. For a site like this, that means I can
-build what I need without introducing a separate front-end framework or a
-collection of additional dependencies.
-
-## Deployment without long-lived AWS credentials
-
-The architecture diagram below represents the actual deployment path.
+GitHub Actions authenticates with AWS using OpenID Connect, or OIDC, and assumes a scoped IAM role using temporary credentials. No long-lived AWS access keys are stored in GitHub.
 
 {{< diagram >}}
 
-A push to the main branch triggers GitHub Actions. The workflow uses OpenID
-Connect, or OIDC, to assume a narrowly scoped IAM role in AWS and receive
-temporary credentials for the deployment.
+CloudFront provides HTTPS delivery and caching, while AWS Certificate Manager provides the TLS certificate. DNS is managed through Cloudflare.
 
-That means there is no long-lived AWS access key stored in GitHub secrets.
+The result is a simple static hosting architecture with no web servers, application runtime, or public virtual machines to maintain.
 
-The workflow then builds the site using the same pinned Hugo version I use
-locally, synchronizes the generated static files to Amazon S3, and
-invalidates the CloudFront distribution, so the updated content is
-available through the CDN.
+## Separating the Site from the Infrastructure
 
-The public side of the architecture is intentionally simple. CloudFront
-serves the static site, while AWS Certificate Manager provides the TLS
-certificate. The certificate is validated through a DNS record in
-Cloudflare, where I manage the domain.
+The site and its infrastructure are maintained in separate GitHub repositories.
 
-There are no web servers to patch, no application runtime to maintain, and
-no public virtual machines sitting behind the site. For what is
-fundamentally a collection of static content, I wanted the hosting
-architecture to remain static as well.
+The site repository contains the Hugo content, configuration, layouts, styling, and deployment workflow. A separate Terraform repository manages the AWS infrastructure supporting the site, including S3, CloudFront, ACM, and IAM.
 
-## Separating the site from the infrastructure
+This keeps the application and infrastructure concerns separate while allowing each to evolve independently.
 
-The application and infrastructure also live in separate repositories.
+## Automating the Homepage
 
-This repository owns the site: the content, Hugo configuration, layouts,
-styling, and deployment workflow.
+The homepage is driven by Hugo content metadata rather than manually maintained article lists.
 
-A separate infrastructure repository owns the AWS resources supporting it,
-including the S3 bucket, CloudFront distribution, ACM certificate, and the
-IAM trust relationship used by GitHub Actions.
+Posts can be marked as featured, while the latest articles are selected automatically from the site's content. Publishing a new article therefore does not require manually updating the homepage.
 
-That separation was deliberate.
+## What's Next
 
-I wanted a clear boundary between the thing being deployed and the
-infrastructure it is being deployed into. It also gives me room to evolve
-the infrastructure independently without turning the site repository into a
-collection of unrelated Terraform scripts.
+As I change the architecture, deployment process, infrastructure, or site design, I plan to document those changes here.
 
-## Layout-driven instead of manually curated
-
-I did not want to maintain a hardcoded list of featured or recent articles
-every time I published something new.
-
-Instead, the homepage is driven by content metadata.
-
-A post can be explicitly marked as featured through its front matter. If
-nothing is marked as featured, the site falls back to the newest build-log
-entry.
-
-The Latest Articles section works the same way. Hugo automatically selects
-the four most recent posts across the site's content sections and excludes
-whichever post is already being displayed as the featured article.
-
-The practical result is that publishing a new article should require
-exactly one thing: publishing the article. I should not also have to
-remember to update a homepage template afterward.
-
-## What's next
-
-This is the first build-log entry on peraleslab.com.
-
-The intention is for the build log to become the history of the site
-itself.
-
-When I change the deployment process, add a new service, redesign part of
-the architecture, or discover that one of my original decisions was a bad
-idea, I want that change documented here rather than buried in Git history.
-
-The site is a finished product in the sense that it is live.
-
-It is very much unfinished in every other sense.
+The site is live, but it is also intentionally a work in progress.
