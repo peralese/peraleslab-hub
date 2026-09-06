@@ -40,7 +40,7 @@ This was my first Anthropic certification. I have already started preparing for 
 
 ## Claude Certified Associate – Foundations (CCAO-F)
 
-![Claude Certified Associate – Foundations credential](ccao-f.png)
+<img src="ccao-f.png" alt="Claude Certified Associate – Foundations credential" width="170" height="170">
 
 Issued by Anthropic
 
