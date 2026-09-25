@@ -469,7 +469,8 @@ a {
 }
 
 .article__body img.screenshot {
-  max-width: 480px;
+  width: 480px;
+  max-width: 100%;
   display: block;
   border: 1px solid var(--border-soft);
 }
@@ -548,8 +549,13 @@ a {
 // ---------------------------------------------------------------------------
 
 @media (max-width: 720px) {
+  .site-header__inner {
+    flex-wrap: wrap;
+  }
+
   .site-nav {
     order: 3;
+    flex: 1 1 100%;
     width: 100%;
     justify-content: flex-start;
     gap: 16px;
@@ -557,6 +563,17 @@ a {
 
   .hero__title {
     font-size: 2rem;
+  }
+
+  .hero__text,
+  .hero__diagram,
+  .featured-card__main,
+  .featured-card__tree {
+    min-width: 0;
+  }
+
+  .featured-card {
+    padding: 20px;
   }
 
   .article-row__meta {
