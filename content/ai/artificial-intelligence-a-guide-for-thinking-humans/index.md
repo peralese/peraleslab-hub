@@ -6,8 +6,6 @@ tag: "AI"
 draft: false
 ---
 
-*Originally published on my personal site on February 20, 2025, and republished here on my technical site.*
-
 ![Artificial Intelligence: A Guide for Thinking Humans by Melanie Mitchell](artificial-intelligence-a-guide-for-thinking-humans.jpg)
 
 When I first decided that I wanted to seriously learn about artificial intelligence, I spent some time looking for a good place to start. I wasn't looking for a programming book or a superficial overview, but something that would give me a solid understanding of what AI actually is, what it can do, and some of its limitations.
